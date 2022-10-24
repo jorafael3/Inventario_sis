@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/Inventario/src/vistas/login.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/Inventario/src/conexion/conexion.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/Inventario-sis/src/vistas/Usuarios.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/Inventario-sis/src/clases/login.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/Inventario-sis/src/vistas/login.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/Inventario-sis/src/vistas/Principal.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/Inventario-sis/src/clases/Usuarios.java</file>
         </group>
     </open-files>
 </project-private>

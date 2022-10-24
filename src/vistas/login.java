@@ -104,7 +104,7 @@ public class login extends javax.swing.JFrame {
         String[] param = {
             usu, pass
         };
-        lg.iniciar(param);
+        lg.iniciar(param,this);
         // TODO add your handling code here:
     }//GEN-LAST:event_Btn_Iniciar_SesionActionPerformed
 

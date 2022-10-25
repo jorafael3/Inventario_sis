@@ -15,6 +15,8 @@ public class login extends javax.swing.JFrame {
      */
     public login() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -34,6 +36,7 @@ public class login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         txt_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +107,7 @@ public class login extends javax.swing.JFrame {
         String[] param = {
             usu, pass
         };
-        lg.iniciar(param,this);
+        lg.iniciar(param, this);
         // TODO add your handling code here:
     }//GEN-LAST:event_Btn_Iniciar_SesionActionPerformed
 

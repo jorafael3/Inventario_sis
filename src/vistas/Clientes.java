@@ -4,6 +4,11 @@
  */
 package vistas;
 
+import java.awt.event.KeyEvent;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author G1-GAMING
@@ -13,10 +18,21 @@ public class Clientes extends javax.swing.JFrame {
     /**
      * Creates new form Clientes
      */
+    clases.Clientes cl = new clases.Clientes();
+    DefaultTableModel modeloTablaClientes;
+
     public Clientes() {
         initComponents();
-                setLocationRelativeTo(null);
-
+        setLocationRelativeTo(null);
+        String[] cabeceraUsuarios = {"USUARIO", "EMAIL", "TIPO"};
+        String datos[][] = {};
+        modeloTablaClientes = new DefaultTableModel(datos, cabeceraUsuarios) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        Tabla_Clientes.setModel(modeloTablaClientes);
     }
 
     /**
@@ -35,16 +51,16 @@ public class Clientes extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        CLI_TXT_CEDULA = new javax.swing.JTextField();
+        CLI_TXT_NOMBRE = new javax.swing.JTextField();
+        CLI_TXT_DIRECCION = new javax.swing.JTextField();
+        CLI_TXT_EMAIL = new javax.swing.JTextField();
+        CLI_TXT_TELEFONO = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jButton3 = new javax.swing.JButton();
+        CLI_CHECK_ESTADO = new javax.swing.JCheckBox();
+        Btn_guardar_cliente = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -52,10 +68,16 @@ public class Clientes extends javax.swing.JFrame {
         jTextField7 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabla_Clientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Clientes"));
@@ -77,6 +99,24 @@ public class Clientes extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel13.setText("Telefono:");
 
+        CLI_TXT_CEDULA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CLI_TXT_CEDULAKeyTyped(evt);
+            }
+        });
+
+        CLI_TXT_NOMBRE.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CLI_TXT_NOMBREKeyTyped(evt);
+            }
+        });
+
+        CLI_TXT_TELEFONO.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CLI_TXT_TELEFONOKeyTyped(evt);
+            }
+        });
+
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setText("ID:");
 
@@ -86,8 +126,8 @@ public class Clientes extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel16.setText("Estado:");
 
-        jCheckBox1.setSelected(true);
-        jCheckBox1.setText("Activo");
+        CLI_CHECK_ESTADO.setSelected(true);
+        CLI_CHECK_ESTADO.setText("Activo");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -105,15 +145,15 @@ public class Clientes extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField4)
-                    .addComponent(jTextField5)
+                    .addComponent(CLI_TXT_NOMBRE)
+                    .addComponent(CLI_TXT_CEDULA)
+                    .addComponent(CLI_TXT_DIRECCION)
+                    .addComponent(CLI_TXT_EMAIL)
+                    .addComponent(CLI_TXT_TELEFONO)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox1))
+                            .addComponent(CLI_CHECK_ESTADO))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -127,32 +167,37 @@ public class Clientes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CLI_TXT_CEDULA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CLI_TXT_NOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CLI_TXT_DIRECCION, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CLI_TXT_EMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CLI_TXT_TELEFONO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jCheckBox1))
+                    .addComponent(CLI_CHECK_ESTADO))
                 .addContainerGap())
         );
 
-        jButton3.setBackground(new java.awt.Color(82, 190, 128));
-        jButton3.setText("Guardar");
+        Btn_guardar_cliente.setBackground(new java.awt.Color(82, 190, 128));
+        Btn_guardar_cliente.setText("Guardar");
+        Btn_guardar_cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_guardar_clienteActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(245, 176, 65));
         jButton4.setText("Actualizar");
@@ -170,7 +215,7 @@ public class Clientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(Btn_guardar_cliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -185,7 +230,7 @@ public class Clientes extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
+                    .addComponent(Btn_guardar_cliente)
                     .addComponent(jButton4)
                     .addComponent(jButton5))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -200,7 +245,7 @@ public class Clientes extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(153, 153, 255));
         jButton1.setText("Buscar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla_Clientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -208,7 +253,7 @@ public class Clientes extends javax.swing.JFrame {
                 "Cedula / Ruc", "Nombre", "Email"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tabla_Clientes);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -264,6 +309,83 @@ public class Clientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Btn_guardar_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_guardar_clienteActionPerformed
+        // TODO add your handling code here:
+        String cedula = CLI_TXT_CEDULA.getText();
+        String nombre = CLI_TXT_NOMBRE.getText();
+        String direccion = CLI_TXT_DIRECCION.getText();
+        String email = CLI_TXT_EMAIL.getText();
+        String telefono = CLI_TXT_TELEFONO.getText();
+        Boolean estado = CLI_CHECK_ESTADO.isSelected();
+        String es = "0";
+        if (estado == true) {
+            es = "1";
+        }
+
+        if (cedula.equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese un numero de cedula");
+        } else if (cedula.equals("")) {
+
+        } else if (direccion.equals("")) {
+
+        } else if (telefono.equals("")) {
+
+        } else {
+            String[] param = {
+                cedula, nombre, direccion, email, telefono, es
+            };
+            System.out.println(Arrays.toString(param));
+            cl.Nuevo_Cliente(param);
+        }
+
+    }//GEN-LAST:event_Btn_guardar_clienteActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+        cl.Cargar_Clientes(modeloTablaClientes, Tabla_Clientes);
+
+    }//GEN-LAST:event_formWindowOpened
+
+    private void CLI_TXT_CEDULAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CLI_TXT_CEDULAKeyTyped
+        // TODO add your handling code here:
+        if (CLI_TXT_CEDULA.getText().length() >= 13) {
+            evt.setKeyChar((char) KeyEvent.VK_CLEAR);
+            JOptionPane.showMessageDialog(null, "Ha  excedido el numero maximo de caracteres!!! (13)", "Validando Datos", JOptionPane.ERROR_MESSAGE);
+        }
+
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(rootPane, "SOLO SE PUEDEN INGRESAR NUMEROS");
+        }
+    }//GEN-LAST:event_CLI_TXT_CEDULAKeyTyped
+
+    private void CLI_TXT_NOMBREKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CLI_TXT_NOMBREKeyTyped
+
+        char charecter = evt.getKeyChar();
+        if (Character.isLowerCase(charecter)) {
+            evt.setKeyChar(Character.toUpperCase(charecter));
+        }
+        char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_CLI_TXT_NOMBREKeyTyped
+
+    private void CLI_TXT_TELEFONOKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CLI_TXT_TELEFONOKeyTyped
+
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(rootPane, "SOLO SE PUEDEN INGRESAR NUMEROS");
+        }
+    }//GEN-LAST:event_CLI_TXT_TELEFONOKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -300,11 +422,17 @@ public class Clientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_guardar_cliente;
+    private javax.swing.JCheckBox CLI_CHECK_ESTADO;
+    private javax.swing.JTextField CLI_TXT_CEDULA;
+    private javax.swing.JTextField CLI_TXT_DIRECCION;
+    private javax.swing.JTextField CLI_TXT_EMAIL;
+    private javax.swing.JTextField CLI_TXT_NOMBRE;
+    private javax.swing.JTextField CLI_TXT_TELEFONO;
+    private javax.swing.JTable Tabla_Clientes;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -317,12 +445,6 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables

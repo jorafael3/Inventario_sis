@@ -1,0 +1,57 @@
+create table Usuarios(
+ID int(9) unsigned zerofill NOT NULL auto_increment primary key,
+usuario varchar(20) not null,
+pass varchar(20),
+email varchar(50),
+tipo_usuario int,
+fecha_creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+creado_por varchar(10)
+)
+
+create table Productos(
+ID int(9) unsigned zerofill NOT NULL auto_increment primary key,
+codigo varchar(50),
+nombre varchar(50),
+descripcion text,
+costo float,
+precio float,
+stock int,
+estado bit,
+fecha_creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+fecha_actualizado TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)
+
+create table Clientes(
+ID int(9) unsigned zerofill NOT NULL auto_increment primary key,
+cedula varchar(13),
+nombre varchar(100),
+direccion text,
+email varchar(50),
+telefono varchar(20),
+estado bit,
+fecha_creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+fecha_actualizado TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)
+
+
+create table ventas_cab(
+ID int(9) unsigned zerofill NOT NULL auto_increment primary key,
+factura varchar(100),
+cliente varchar(10),
+subtotal float,
+iva float,
+total float,
+nota text,
+fecha_creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+
+create table ventas_dt(
+ID int(9) unsigned zerofill NOT NULL auto_increment primary key,
+factura_id varchar(10),
+factura varchar(100),
+producto_id varchar(10),
+cantidad int,
+subtotal float,
+total float
+)
+

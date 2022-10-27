@@ -4,6 +4,10 @@
  */
 package vistas;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author G1-GAMING
@@ -13,9 +17,21 @@ public class Productos extends javax.swing.JFrame {
     /**
      * Creates new form Productos
      */
+    clases.Productos pr = new clases.Productos();
+    DefaultTableModel modeloTablaProductos;
+
     public Productos() {
         initComponents();
         setLocationRelativeTo(null);
+        String[] cabeceraUsuarios = {"ID", "CODIGO", "NOMBRE", "PRECIO", "PRECIO DE VENTA"};
+        String datos[][] = {};
+        modeloTablaProductos = new DefaultTableModel(datos, cabeceraUsuarios) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
     }
 
     /**
@@ -29,15 +45,15 @@ public class Productos extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        PROD_TXT_COD = new javax.swing.JTextField();
+        PROD_TXT_STOCK = new javax.swing.JTextField();
+        PROD_TXT_NOMBRE = new javax.swing.JTextField();
+        PROD_TXT_COSTO = new javax.swing.JTextField();
+        PROD_TXT_PRECIO = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jTextField7 = new javax.swing.JTextField();
+        PROD_TXT_DESC = new javax.swing.JTextArea();
+        PROD_CHECK_ESTADO = new javax.swing.JCheckBox();
+        PROD_TXT_ID = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -47,34 +63,39 @@ public class Productos extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        Btn_Guardar_Producto = new javax.swing.JButton();
+        Btn_Actualizar_p = new javax.swing.JButton();
+        PROD_Btn_Nuevo = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabla_Productos = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        PRO_TXT_BUSCAR = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Fichero de Productos");
         setBackground(new java.awt.Color(255, 255, 255));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Productos"));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        PROD_TXT_DESC.setColumns(20);
+        PROD_TXT_DESC.setRows(5);
+        jScrollPane1.setViewportView(PROD_TXT_DESC);
 
-        jCheckBox1.setSelected(true);
-        jCheckBox1.setText("Activo");
+        PROD_CHECK_ESTADO.setSelected(true);
+        PROD_CHECK_ESTADO.setText("Activo");
 
-        jTextField7.setEditable(false);
-        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
+        PROD_TXT_ID.setEditable(false);
+        PROD_TXT_ID.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -83,34 +104,34 @@ public class Productos extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField4)
-                    .addComponent(jTextField5)
+                    .addComponent(PROD_TXT_STOCK, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                    .addComponent(PROD_TXT_NOMBRE)
+                    .addComponent(PROD_TXT_COD)
+                    .addComponent(PROD_TXT_COSTO)
+                    .addComponent(PROD_TXT_PRECIO)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jTextField7))
+                    .addComponent(PROD_CHECK_ESTADO)
+                    .addComponent(PROD_TXT_ID))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PROD_TXT_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PROD_TXT_COD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PROD_TXT_NOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PROD_TXT_COSTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PROD_TXT_PRECIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PROD_TXT_STOCK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox1)
+                .addComponent(PROD_CHECK_ESTADO)
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
@@ -180,15 +201,30 @@ public class Productos extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton3.setBackground(new java.awt.Color(82, 190, 128));
-        jButton3.setText("Guardar");
+        Btn_Guardar_Producto.setBackground(new java.awt.Color(82, 190, 128));
+        Btn_Guardar_Producto.setText("Guardar");
+        Btn_Guardar_Producto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_Guardar_ProductoActionPerformed(evt);
+            }
+        });
 
-        jButton4.setBackground(new java.awt.Color(245, 176, 65));
-        jButton4.setText("Actualizar");
-        jButton4.setEnabled(false);
+        Btn_Actualizar_p.setBackground(new java.awt.Color(245, 176, 65));
+        Btn_Actualizar_p.setText("Actualizar");
+        Btn_Actualizar_p.setEnabled(false);
+        Btn_Actualizar_p.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_Actualizar_pActionPerformed(evt);
+            }
+        });
 
-        jButton5.setBackground(new java.awt.Color(127, 179, 213));
-        jButton5.setText("Nuevo");
+        PROD_Btn_Nuevo.setBackground(new java.awt.Color(127, 179, 213));
+        PROD_Btn_Nuevo.setText("Nuevo");
+        PROD_Btn_Nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PROD_Btn_NuevoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -202,11 +238,11 @@ public class Productos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(Btn_Guardar_Producto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
+                        .addComponent(Btn_Actualizar_p)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)))
+                        .addComponent(PROD_Btn_Nuevo)))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -218,26 +254,37 @@ public class Productos extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(Btn_Guardar_Producto)
+                    .addComponent(Btn_Actualizar_p)
+                    .addComponent(PROD_Btn_Nuevo))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla_Productos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {"0001", "sdf", "sdf", "10", null}
             },
             new String [] {
-                "Codigo", "Nombre", "Costo", "Precio Venta"
+                "ID", "Codigo", "Nombre", "Costo", "Precio Venta"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        Tabla_Productos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tabla_ProductosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(Tabla_Productos);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Codigo / Nombre del producto");
+
+        PRO_TXT_BUSCAR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                PRO_TXT_BUSCARKeyTyped(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(153, 153, 255));
         jButton1.setText("Buscar");
@@ -253,7 +300,7 @@ public class Productos extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField6))
+                            .addComponent(PRO_TXT_BUSCAR))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -266,7 +313,7 @@ public class Productos extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PRO_TXT_BUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -296,6 +343,128 @@ public class Productos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Btn_Guardar_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Guardar_ProductoActionPerformed
+
+        String codigo = PROD_TXT_COD.getText();
+        String nombre = PROD_TXT_NOMBRE.getText();
+        String desc = PROD_TXT_DESC.getText();
+        String costo = PROD_TXT_COSTO.getText();
+        String precio = PROD_TXT_PRECIO.getText();
+        String stock = PROD_TXT_STOCK.getText();
+        Boolean estado = PROD_CHECK_ESTADO.isSelected();
+        String es = "0";
+        if (estado == true) {
+            es = "1";
+        }
+
+        if (codigo.equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar codigo del producto");
+        } else if (nombre.equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar nombre del producto");
+
+        } else if (desc.equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar descripcion del producto");
+
+        } else if (costo.equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar costo del producto");
+
+        } else if (precio.equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar precio del producto");
+
+        } else if (stock.equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar stock del producto");
+
+        } else {
+            String[] param = {
+                codigo, nombre, desc, costo, precio, stock, es
+            };
+
+            pr.Nuevo_Producto(param);
+        }
+
+
+    }//GEN-LAST:event_Btn_Guardar_ProductoActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_formWindowOpened
+
+    private void Tabla_ProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabla_ProductosMouseClicked
+
+        int index = Tabla_Productos.getSelectedRow();
+        TableModel model = Tabla_Productos.getModel();
+        String ID = model.getValueAt(index, 0).toString();
+        System.out.println(ID);
+        String[] param = {
+            ID
+        };
+        PROD_TXT_ID.setText(ID);
+        Btn_Guardar_Producto.setEnabled(false);
+        Btn_Actualizar_p.setEnabled(true);
+    }//GEN-LAST:event_Tabla_ProductosMouseClicked
+
+    private void Btn_Actualizar_pActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Actualizar_pActionPerformed
+        String ID = PROD_TXT_ID.getText();
+        String codigo = PROD_TXT_COD.getText();
+        String nombre = PROD_TXT_NOMBRE.getText();
+        String desc = PROD_TXT_DESC.getText();
+        String costo = PROD_TXT_COSTO.getText();
+        String precio = PROD_TXT_PRECIO.getText();
+        String stock = PROD_TXT_STOCK.getText();
+        Boolean estado = PROD_CHECK_ESTADO.isSelected();
+        String es = "0";
+        if (estado == true) {
+            es = "1";
+        }
+
+        if (codigo.equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar codigo del producto");
+        } else if (nombre.equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar nombre del producto");
+
+        } else if (desc.equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar descripcion del producto");
+
+        } else if (costo.equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar costo del producto");
+
+        } else if (precio.equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar precio del producto");
+
+        } else if (stock.equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar stock del producto");
+
+        } else {
+            String[] param = {
+                codigo, nombre, desc, costo, precio, stock, es, ID
+            };
+            pr.Nuevo_Producto(param);
+        }
+    }//GEN-LAST:event_Btn_Actualizar_pActionPerformed
+
+    private void PRO_TXT_BUSCARKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PRO_TXT_BUSCARKeyTyped
+        // TODO add your handling code here:
+        String codigo = PRO_TXT_BUSCAR.getText();
+
+        String[] param = {
+            codigo
+        };
+        pr.Buscar_Producto(modeloTablaProductos, Tabla_Productos, param);
+    }//GEN-LAST:event_PRO_TXT_BUSCARKeyTyped
+
+    private void PROD_Btn_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PROD_Btn_NuevoActionPerformed
+        PROD_TXT_ID.setText("");
+        PROD_TXT_COD.setText("");
+        PROD_TXT_NOMBRE.setText("");
+        PROD_TXT_DESC.setText("");
+        PROD_TXT_COSTO.setText("");
+        PROD_TXT_PRECIO.setText("");
+        PROD_TXT_STOCK.setText("");
+        PROD_CHECK_ESTADO.setSelected(true);
+
+    }//GEN-LAST:event_PROD_Btn_NuevoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,17 +497,26 @@ public class Productos extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Productos().setVisible(true);
-                
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_Actualizar_p;
+    private javax.swing.JButton Btn_Guardar_Producto;
+    private javax.swing.JButton PROD_Btn_Nuevo;
+    private javax.swing.JCheckBox PROD_CHECK_ESTADO;
+    private javax.swing.JTextField PROD_TXT_COD;
+    private javax.swing.JTextField PROD_TXT_COSTO;
+    private javax.swing.JTextArea PROD_TXT_DESC;
+    private javax.swing.JTextField PROD_TXT_ID;
+    private javax.swing.JTextField PROD_TXT_NOMBRE;
+    private javax.swing.JTextField PROD_TXT_PRECIO;
+    private javax.swing.JTextField PROD_TXT_STOCK;
+    private javax.swing.JTextField PRO_TXT_BUSCAR;
+    private javax.swing.JTable Tabla_Productos;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -354,14 +532,5 @@ public class Productos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

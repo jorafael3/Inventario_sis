@@ -54,8 +54,8 @@ public class Clientes {
         }
         return val;
     }
-    
-      public void Cargar_Clientes(DefaultTableModel modelo, JTable tabla) {
+
+    public void Cargar_Clientes(DefaultTableModel modelo, JTable tabla) {
         try {
             Clear_Table(modelo, tabla);
 
@@ -77,8 +77,32 @@ public class Clientes {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-      
-      private void Clear_Table(DefaultTableModel modelo, JTable tabla) {
+
+    public void Cargar_Clientes_Buscar(DefaultTableModel modelo, JTable tabla, String[] array) {
+        try {
+            Clear_Table(modelo, tabla);
+            String codigo = array[0];
+            String sql = "{CALL Buscar_Cliente (?)}";
+            PreparedStatement us = con.prepareStatement(sql);
+            us.setString(1, codigo);
+            ResultSet res = us.executeQuery();
+            Object datos[] = new Object[3];
+            while (res.next()) {
+                for (int i = 0; i < 3; i++) {
+                    datos[i] = res.getObject(i + 1);
+                }
+                System.out.println(Arrays.toString(datos));
+                modelo.addRow(datos);
+
+            }
+
+            res.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    private void Clear_Table(DefaultTableModel modelo, JTable tabla) {
         for (int i = 0; i < tabla.getRowCount(); i++) {
             modelo.removeRow(i);
             i -= 1;

@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -57,15 +58,15 @@ public class Clientes extends javax.swing.JFrame {
         CLI_TXT_EMAIL = new javax.swing.JTextField();
         CLI_TXT_TELEFONO = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        CLI_TXT_ID = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         CLI_CHECK_ESTADO = new javax.swing.JCheckBox();
         Btn_guardar_cliente = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        Btn_Actualizar_Cliente = new javax.swing.JButton();
+        Btn_Nuevo = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        CLI_TXT_BUSCAR = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla_Clientes = new javax.swing.JTable();
@@ -120,8 +121,8 @@ public class Clientes extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setText("ID:");
 
-        jTextField6.setEditable(false);
-        jTextField6.setBackground(new java.awt.Color(204, 204, 204));
+        CLI_TXT_ID.setEditable(false);
+        CLI_TXT_ID.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel16.setText("Estado:");
@@ -152,7 +153,7 @@ public class Clientes extends javax.swing.JFrame {
                     .addComponent(CLI_TXT_TELEFONO)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CLI_TXT_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CLI_CHECK_ESTADO))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -163,7 +164,7 @@ public class Clientes extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CLI_TXT_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -199,12 +200,17 @@ public class Clientes extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(245, 176, 65));
-        jButton4.setText("Actualizar");
-        jButton4.setEnabled(false);
+        Btn_Actualizar_Cliente.setBackground(new java.awt.Color(245, 176, 65));
+        Btn_Actualizar_Cliente.setText("Actualizar");
+        Btn_Actualizar_Cliente.setEnabled(false);
 
-        jButton5.setBackground(new java.awt.Color(127, 179, 213));
-        jButton5.setText("Nuevo");
+        Btn_Nuevo.setBackground(new java.awt.Color(127, 179, 213));
+        Btn_Nuevo.setText("Nuevo");
+        Btn_Nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_NuevoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -217,9 +223,9 @@ public class Clientes extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Btn_guardar_cliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
+                        .addComponent(Btn_Actualizar_Cliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)
+                        .addComponent(Btn_Nuevo)
                         .addGap(0, 79, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -231,8 +237,8 @@ public class Clientes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_guardar_cliente)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(Btn_Actualizar_Cliente)
+                    .addComponent(Btn_Nuevo))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -241,6 +247,12 @@ public class Clientes extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel15.setText("Cedula / Nombre:");
+
+        CLI_TXT_BUSCAR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CLI_TXT_BUSCARKeyTyped(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(153, 153, 255));
         jButton1.setText("Buscar");
@@ -253,6 +265,11 @@ public class Clientes extends javax.swing.JFrame {
                 "Cedula / Ruc", "Nombre", "Email"
             }
         ));
+        Tabla_Clientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tabla_ClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tabla_Clientes);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -263,7 +280,7 @@ public class Clientes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CLI_TXT_BUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addGap(51, 51, 51))
@@ -278,7 +295,7 @@ public class Clientes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CLI_TXT_BUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -386,6 +403,44 @@ public class Clientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_CLI_TXT_TELEFONOKeyTyped
 
+    private void Btn_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_NuevoActionPerformed
+        // TODO add your handling code here:
+
+        CLI_TXT_ID.setText("");
+        CLI_TXT_CEDULA.setText("");
+        CLI_TXT_NOMBRE.setText("");
+        CLI_TXT_DIRECCION.setText("");
+        CLI_TXT_EMAIL.setText("");
+        CLI_TXT_TELEFONO.setText("");
+        CLI_CHECK_ESTADO.setSelected(true);
+
+
+    }//GEN-LAST:event_Btn_NuevoActionPerformed
+
+    private void CLI_TXT_BUSCARKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CLI_TXT_BUSCARKeyTyped
+        // TODO add your handling code here:
+        String codigo = CLI_TXT_BUSCAR.getText();
+
+        String[] param = {
+            codigo
+        };
+        cl.Cargar_Clientes_Buscar(modeloTablaClientes, Tabla_Clientes, param);
+    }//GEN-LAST:event_CLI_TXT_BUSCARKeyTyped
+
+    private void Tabla_ClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabla_ClientesMouseClicked
+        // TODO add your handling code here:
+        int index = Tabla_Clientes.getSelectedRow();
+        TableModel model = Tabla_Clientes.getModel();
+        String ID = model.getValueAt(index, 0).toString();
+        System.out.println(ID);
+        String[] param = {
+            ID
+        };
+        CLI_TXT_ID.setText(ID);
+        Btn_guardar_cliente.setEnabled(false);
+        Btn_Actualizar_Cliente.setEnabled(true);
+    }//GEN-LAST:event_Tabla_ClientesMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -422,17 +477,19 @@ public class Clientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_Actualizar_Cliente;
+    private javax.swing.JButton Btn_Nuevo;
     private javax.swing.JButton Btn_guardar_cliente;
     private javax.swing.JCheckBox CLI_CHECK_ESTADO;
+    private javax.swing.JTextField CLI_TXT_BUSCAR;
     private javax.swing.JTextField CLI_TXT_CEDULA;
     private javax.swing.JTextField CLI_TXT_DIRECCION;
     private javax.swing.JTextField CLI_TXT_EMAIL;
+    private javax.swing.JTextField CLI_TXT_ID;
     private javax.swing.JTextField CLI_TXT_NOMBRE;
     private javax.swing.JTextField CLI_TXT_TELEFONO;
     private javax.swing.JTable Tabla_Clientes;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -445,7 +502,5 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

@@ -21,7 +21,7 @@ public class Usuarios {
 
     conexion.conexion arc = new conexion.conexion();
     Connection con = arc.conex();
-
+    
     //******************************************
     // CARGAR LISTA DE USUARIOS
     public void Cargar_usuarios(DefaultTableModel modelo, JTable tabla) {
@@ -46,7 +46,7 @@ public class Usuarios {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-
+    
     //***************************************
     // CREAR NUEVO USUARIO
     public int Nuevo_Usuario(String[] array) {
@@ -78,6 +78,7 @@ public class Usuarios {
         return val;
     }
 
+    
     private void Clear_Table(DefaultTableModel modelo, JTable tabla) {
         for (int i = 0; i < tabla.getRowCount(); i++) {
             modelo.removeRow(i);

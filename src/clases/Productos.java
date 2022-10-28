@@ -32,7 +32,9 @@ public class Productos {
         int estado = Integer.parseInt(array[6]);
         int val = 0;
         try {
-            PreparedStatement pst = (PreparedStatement) con.prepareStatement("{CALL nuevo_Producto (?,?,?,?,?,?,?)}");
+            PreparedStatement pst = (PreparedStatement) con.prepareStatement("INSERT into Productos ("
+                    + "codigo,nombre,descripcion,costo,precio,stock,estado)"
+                    + "values(?,?,?,?,?,?,?)");
             pst.setString(1, codigo);
             pst.setString(2, nombre);
             pst.setString(3, desc);
@@ -57,25 +59,45 @@ public class Productos {
         return val;
     }
 
-    public int Cargar_Productos(String[] array) {
+    public Object[] Cargar_Productos(String[] array) {
         String ID = array[0];
+        Object datos[] = new Object[8];
         try {
-            PreparedStatement pst = (PreparedStatement) con.prepareStatement("{CALL Cargar_Productos (?)}");
-            pst.setString(1, ID);
-            int a = pst.executeUpdate();
-            if (a > 0) {
-                JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO");
-                // val = 1;
-                //limpiar(codigo, servicio, subtipo, costo);
-            } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL AGREGAR");
+            //PreparedStatement pst = (PreparedStatement) con.prepareStatement("{CALL Cargar_Productos (?)}");            PreparedStatement pst = (PreparedStatement) con.prepareStatement("{CALL Cargar_Productos (?)}");
+            PreparedStatement pst = (PreparedStatement) con.prepareStatement("select * from Productos");
+            //pst.setString(1, ID);
+            ResultSet res = pst.executeQuery();
+            while (res.next()) {
+                for (int i = 0; i < 8; i++) {
+                    datos[i] = res.getObject(i + 1);
+                }
+                System.out.println(Arrays.toString(datos));
             }
-
             pst.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+        return datos;
+    }
 
+    public int Cargar_Productos_Tabla(DefaultTableModel modelo, JTable tabla) {
+        try {
+            Clear_Table(modelo, tabla);
+            String sql = "select ID,codigo,nombre,costo,precio FROM Productos";
+            PreparedStatement us = con.prepareStatement(sql);
+            ResultSet res = us.executeQuery();
+            Object datos[] = new Object[5];
+            while (res.next()) {
+                for (int i = 0; i < 5; i++) {
+                    datos[i] = res.getObject(i + 1);
+                }
+                System.out.println(Arrays.toString(datos));
+                modelo.addRow(datos);
+            }
+            res.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
         return 0;
     }
 
@@ -90,7 +112,9 @@ public class Productos {
         String ID = array[7];
         int val = 0;
         try {
-            PreparedStatement pst = (PreparedStatement) con.prepareStatement("{CALL Actualizar_Producto (?,?,?,?,?,?,?,?)}");
+            PreparedStatement pst = (PreparedStatement) con.prepareStatement(""
+                    + "UPDATE Productos set codigo = ?,nombre =?,descripcion=?,costo=?,precio=?,stock=?,estado=?"
+                    + " WHERE ID = ?;");
             pst.setString(1, codigo);
             pst.setString(2, nombre);
             pst.setString(3, desc);

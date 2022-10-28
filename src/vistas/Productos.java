@@ -31,6 +31,7 @@ public class Productos extends javax.swing.JFrame {
                 return false;
             }
         };
+        Tabla_Productos.setModel(modeloTablaProductos);
 
     }
 
@@ -73,7 +74,7 @@ public class Productos extends javax.swing.JFrame {
         PRO_TXT_BUSCAR = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Fichero de Productos");
         setBackground(new java.awt.Color(255, 255, 255));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -264,10 +265,10 @@ public class Productos extends javax.swing.JFrame {
 
         Tabla_Productos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"0001", "sdf", "sdf", "10", null}
+
             },
             new String [] {
-                "ID", "Codigo", "Nombre", "Costo", "Precio Venta"
+                "ID", "Codigo", "Nombre", "Precio Venta"
             }
         ));
         Tabla_Productos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -388,7 +389,7 @@ public class Productos extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-
+        pr.Cargar_Productos_Tabla(modeloTablaProductos, Tabla_Productos);
     }//GEN-LAST:event_formWindowOpened
 
     private void Tabla_ProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabla_ProductosMouseClicked
@@ -396,13 +397,22 @@ public class Productos extends javax.swing.JFrame {
         int index = Tabla_Productos.getSelectedRow();
         TableModel model = Tabla_Productos.getModel();
         String ID = model.getValueAt(index, 0).toString();
-        System.out.println(ID);
         String[] param = {
             ID
         };
         PROD_TXT_ID.setText(ID);
         Btn_Guardar_Producto.setEnabled(false);
         Btn_Actualizar_p.setEnabled(true);
+        Object[] a = pr.Cargar_Productos(param);
+        System.out.println(a[1]);
+        PROD_TXT_COD.setText(a[1].toString());
+        PROD_TXT_NOMBRE.setText(a[2].toString());
+        PROD_TXT_DESC.setText(a[3].toString());
+        PROD_TXT_COSTO.setText(a[4].toString());
+        PROD_TXT_PRECIO.setText(a[5].toString());
+        PROD_TXT_STOCK.setText(a[6].toString());
+        PROD_CHECK_ESTADO.setSelected((Boolean) a[7]);
+
     }//GEN-LAST:event_Tabla_ProductosMouseClicked
 
     private void Btn_Actualizar_pActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Actualizar_pActionPerformed
@@ -440,7 +450,8 @@ public class Productos extends javax.swing.JFrame {
             String[] param = {
                 codigo, nombre, desc, costo, precio, stock, es, ID
             };
-            pr.Nuevo_Producto(param);
+            pr.Actualizar_Producto(param);
+            pr.Cargar_Productos_Tabla(modeloTablaProductos, Tabla_Productos);
         }
     }//GEN-LAST:event_Btn_Actualizar_pActionPerformed
 

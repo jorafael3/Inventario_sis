@@ -25,7 +25,7 @@ public class Clientes extends javax.swing.JFrame {
     public Clientes() {
         initComponents();
         setLocationRelativeTo(null);
-        String[] cabeceraUsuarios = {"USUARIO", "EMAIL", "TIPO"};
+        String[] cabeceraUsuarios = {"ID", "CEDULA/RUC", "CLIENTE", "Email", "ESTADO"};
         String datos[][] = {};
         modeloTablaClientes = new DefaultTableModel(datos, cabeceraUsuarios) {
             @Override
@@ -203,6 +203,11 @@ public class Clientes extends javax.swing.JFrame {
         Btn_Actualizar_Cliente.setBackground(new java.awt.Color(245, 176, 65));
         Btn_Actualizar_Cliente.setText("Actualizar");
         Btn_Actualizar_Cliente.setEnabled(false);
+        Btn_Actualizar_Cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_Actualizar_ClienteActionPerformed(evt);
+            }
+        });
 
         Btn_Nuevo.setBackground(new java.awt.Color(127, 179, 213));
         Btn_Nuevo.setText("Nuevo");
@@ -262,7 +267,7 @@ public class Clientes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cedula / Ruc", "Nombre", "Email"
+                "ID", "Cedula / Ruc", "Cliente", "Email", "Estado"
             }
         ));
         Tabla_Clientes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -278,16 +283,17 @@ public class Clientes extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CLI_TXT_BUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addGap(51, 51, 51))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CLI_TXT_BUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(51, 51, 51))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,6 +359,8 @@ public class Clientes extends javax.swing.JFrame {
             };
             System.out.println(Arrays.toString(param));
             cl.Nuevo_Cliente(param);
+            cl.Cargar_Clientes(modeloTablaClientes, Tabla_Clientes);
+
         }
 
     }//GEN-LAST:event_Btn_guardar_clienteActionPerformed
@@ -413,7 +421,8 @@ public class Clientes extends javax.swing.JFrame {
         CLI_TXT_EMAIL.setText("");
         CLI_TXT_TELEFONO.setText("");
         CLI_CHECK_ESTADO.setSelected(true);
-
+        Btn_Actualizar_Cliente.setEnabled(false);
+        Btn_guardar_cliente.setEnabled(true);
 
     }//GEN-LAST:event_Btn_NuevoActionPerformed
 
@@ -439,7 +448,48 @@ public class Clientes extends javax.swing.JFrame {
         CLI_TXT_ID.setText(ID);
         Btn_guardar_cliente.setEnabled(false);
         Btn_Actualizar_Cliente.setEnabled(true);
+        Object[] a = cl.Cargar_Clientes_click_Tabla(param);
+        CLI_TXT_CEDULA.setText(a[1].toString());
+        CLI_TXT_NOMBRE.setText(a[2].toString());
+        CLI_TXT_DIRECCION.setText(a[3].toString());
+        CLI_TXT_EMAIL.setText(a[4].toString());
+        CLI_TXT_TELEFONO.setText(a[5].toString());
+        CLI_CHECK_ESTADO.setSelected((Boolean) a[6]);
+
     }//GEN-LAST:event_Tabla_ClientesMouseClicked
+
+    private void Btn_Actualizar_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Actualizar_ClienteActionPerformed
+        // TODO add your handling code here:
+        String id = CLI_TXT_ID.getText();
+        String cedula = CLI_TXT_CEDULA.getText();
+        String nombre = CLI_TXT_NOMBRE.getText();
+        String direccion = CLI_TXT_DIRECCION.getText();
+        String email = CLI_TXT_EMAIL.getText();
+        String telefono = CLI_TXT_TELEFONO.getText();
+        Boolean estado = CLI_CHECK_ESTADO.isSelected();
+        String es = "0";
+        if (estado == true) {
+            es = "1";
+        }
+
+        if (cedula.equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese un numero de cedula");
+        } else if (cedula.equals("")) {
+
+        } else if (direccion.equals("")) {
+
+        } else if (telefono.equals("")) {
+
+        } else {
+            String[] param = {
+                cedula, nombre, direccion, email, telefono, es, id
+            };
+            System.out.println(Arrays.toString(param));
+            cl.Actualizar_Cliente(param);
+            cl.Cargar_Clientes(modeloTablaClientes, Tabla_Clientes);
+        }
+
+    }//GEN-LAST:event_Btn_Actualizar_ClienteActionPerformed
 
     /**
      * @param args the command line arguments

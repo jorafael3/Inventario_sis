@@ -64,8 +64,9 @@ public class Productos {
         Object datos[] = new Object[8];
         try {
             //PreparedStatement pst = (PreparedStatement) con.prepareStatement("{CALL Cargar_Productos (?)}");            PreparedStatement pst = (PreparedStatement) con.prepareStatement("{CALL Cargar_Productos (?)}");
-            PreparedStatement pst = (PreparedStatement) con.prepareStatement("select * from Productos");
-            //pst.setString(1, ID);
+            PreparedStatement pst = (PreparedStatement) con.prepareStatement("select * from Productos"
+                    + " WHERE ID = ?;");
+            pst.setString(1, ID);
             ResultSet res = pst.executeQuery();
             while (res.next()) {
                 for (int i = 0; i < 8; i++) {
@@ -89,6 +90,27 @@ public class Productos {
             Object datos[] = new Object[5];
             while (res.next()) {
                 for (int i = 0; i < 5; i++) {
+                    datos[i] = res.getObject(i + 1);
+                }
+                System.out.println(Arrays.toString(datos));
+                modelo.addRow(datos);
+            }
+            res.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return 0;
+    }
+
+    public int Cargar_Productos_Tabla_Agregar(DefaultTableModel modelo, JTable tabla) {
+        try {
+            Clear_Table(modelo, tabla);
+            String sql = "select ID,codigo,nombre,descripcion,precio,Stock FROM Productos where estado = 1";
+            PreparedStatement us = con.prepareStatement(sql);
+            ResultSet res = us.executeQuery();
+            Object datos[] = new Object[6];
+            while (res.next()) {
+                for (int i = 0; i < 6; i++) {
                     datos[i] = res.getObject(i + 1);
                 }
                 System.out.println(Arrays.toString(datos));
@@ -144,13 +166,35 @@ public class Productos {
         try {
             Clear_Table(modelo, tabla);
             String codigo = array[0];
-            String sql = "{CALL Buscar_Producto (?)}";
+            String sql = "select * from Productos where codigo like '%" + codigo + "%' or nombre like '%" + codigo + "%'";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, codigo);
+            // pst.setString(1, codigo);
             ResultSet res = pst.executeQuery();
             Object datos[] = new Object[3];
             while (res.next()) {
                 for (int i = 0; i < 3; i++) {
+                    datos[i] = res.getObject(i + 1);
+                }
+                System.out.println(Arrays.toString(datos));
+                modelo.addRow(datos);
+            }
+            res.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    public void Buscar_Producto_Agregar(DefaultTableModel modelo, JTable tabla, String[] array) {
+        try {
+            Clear_Table(modelo, tabla);
+            String codigo = array[0];
+            String sql = "select ID,codigo,nombre,descripcion,precio,stock from Productos where codigo like '%" + codigo + "%' or nombre like '%" + codigo + "%'";
+            PreparedStatement pst = con.prepareStatement(sql);
+            // pst.setString(1, codigo);
+            ResultSet res = pst.executeQuery();
+            Object datos[] = new Object[6];
+            while (res.next()) {
+                for (int i = 0; i < 6; i++) {
                     datos[i] = res.getObject(i + 1);
                 }
                 System.out.println(Arrays.toString(datos));

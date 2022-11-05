@@ -161,12 +161,21 @@
             <Component class="javax.swing.JTextField" name="PROD_TXT_COD">
             </Component>
             <Component class="javax.swing.JTextField" name="PROD_TXT_STOCK">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PROD_TXT_STOCKKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="PROD_TXT_NOMBRE">
             </Component>
             <Component class="javax.swing.JTextField" name="PROD_TXT_COSTO">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PROD_TXT_COSTOKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="PROD_TXT_PRECIO">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PROD_TXT_PRECIOKeyTyped"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
               <AuxValues>
@@ -367,7 +376,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" pref="426" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="608" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel7" max="32767" attributes="0"/>

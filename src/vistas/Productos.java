@@ -88,6 +88,24 @@ public class Productos extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+        PROD_TXT_STOCK.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                PROD_TXT_STOCKKeyTyped(evt);
+            }
+        });
+
+        PROD_TXT_COSTO.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                PROD_TXT_COSTOKeyTyped(evt);
+            }
+        });
+
+        PROD_TXT_PRECIO.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                PROD_TXT_PRECIOKeyTyped(evt);
+            }
+        });
+
         PROD_TXT_DESC.setColumns(20);
         PROD_TXT_DESC.setRows(5);
         jScrollPane1.setViewportView(PROD_TXT_DESC);
@@ -297,7 +315,7 @@ public class Productos extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -377,11 +395,27 @@ public class Productos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe ingresar stock del producto");
 
         } else {
-            String[] param = {
-                codigo, nombre, desc, costo, precio, stock, es
-            };
 
-            pr.Nuevo_Producto(param);
+            if (isNumeric(costo) == false) {
+                PROD_TXT_COSTO.requestFocus();
+                JOptionPane.showMessageDialog(null, "El campo Costo tiene un formato no valido, si es decimales utilizar punto(.)");
+            } else if (isNumeric(precio) == false) {
+                PROD_TXT_PRECIO.requestFocus();
+                JOptionPane.showMessageDialog(null, "El campo Precio tiene un formato no valido, si es decimales utilizar punto(.)");
+
+            } else if (isStringInt(stock) == false) {
+                PROD_TXT_STOCK.requestFocus();
+                JOptionPane.showMessageDialog(null, "El campo Stock tiene un formato no valido, Solo numero enteros");
+
+            } else {
+                String[] param = {
+                    codigo, nombre, desc, costo, precio, stock, es
+                };
+
+                pr.Nuevo_Producto(param);
+                pr.Cargar_Productos_Tabla(modeloTablaProductos, Tabla_Productos);
+                PROD_Btn_Nuevo.doClick();
+            }
         }
 
 
@@ -447,11 +481,25 @@ public class Productos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe ingresar stock del producto");
 
         } else {
-            String[] param = {
-                codigo, nombre, desc, costo, precio, stock, es, ID
-            };
-            pr.Actualizar_Producto(param);
-            pr.Cargar_Productos_Tabla(modeloTablaProductos, Tabla_Productos);
+
+            if (isNumeric(costo) == false) {
+                PROD_TXT_COSTO.requestFocus();
+                JOptionPane.showMessageDialog(null, "El campo Costo tiene un formato no valido, si es decimales utilizar punto(.)");
+            } else if (isNumeric(precio) == false) {
+                PROD_TXT_PRECIO.requestFocus();
+                JOptionPane.showMessageDialog(null, "El campo Precio tiene un formato no valido, si es decimales utilizar punto(.)");
+
+            } else if (isStringInt(stock) == false) {
+                PROD_TXT_STOCK.requestFocus();
+                JOptionPane.showMessageDialog(null, "El campo Stock tiene un formato no valido, Solo numero enteros");
+
+            } else {
+                String[] param = {
+                    codigo, nombre, desc, costo, precio, stock, es, ID
+                };
+                pr.Actualizar_Producto(param);
+                pr.Cargar_Productos_Tabla(modeloTablaProductos, Tabla_Productos);
+            }
         }
     }//GEN-LAST:event_Btn_Actualizar_pActionPerformed
 
@@ -474,8 +522,43 @@ public class Productos extends javax.swing.JFrame {
         PROD_TXT_PRECIO.setText("");
         PROD_TXT_STOCK.setText("");
         PROD_CHECK_ESTADO.setSelected(true);
+        Btn_Actualizar_p.setEnabled(false);
+        Btn_Guardar_Producto.setEnabled(true);
 
     }//GEN-LAST:event_PROD_Btn_NuevoActionPerformed
+
+    private void PROD_TXT_STOCKKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PROD_TXT_STOCKKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+            PROD_TXT_STOCK.setText("");
+            JOptionPane.showMessageDialog(rootPane, "SOLO SE PUEDEN INGRESAR NUMEROS");
+        }
+    }//GEN-LAST:event_PROD_TXT_STOCKKeyTyped
+
+    private void PROD_TXT_PRECIOKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PROD_TXT_PRECIOKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+            PROD_TXT_PRECIO.setText("");
+            JOptionPane.showMessageDialog(rootPane, "SOLO SE PUEDEN INGRESAR NUMEROS");
+        }
+    }//GEN-LAST:event_PROD_TXT_PRECIOKeyTyped
+
+    private void PROD_TXT_COSTOKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PROD_TXT_COSTOKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+            PROD_TXT_COSTO.setText("");
+            JOptionPane.showMessageDialog(rootPane, "SOLO SE PUEDEN INGRESAR NUMEROS");
+        }
+    }//GEN-LAST:event_PROD_TXT_COSTOKeyTyped
 
     /**
      * @param args the command line arguments
@@ -511,6 +594,28 @@ public class Productos extends javax.swing.JFrame {
 
             }
         });
+    }
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isStringInt(String s) {
+        try {
+            double d = Integer.parseInt(s);
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+        return true;
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

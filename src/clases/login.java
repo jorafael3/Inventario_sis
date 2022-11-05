@@ -43,7 +43,6 @@ public class login {
 
                     Principal m = new Principal();
                     m.setVisible(true);
-                    //m.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     m.lb_usuario.setText(u);
                     m.lbtipo.setText(t);
                     ve.dispose();

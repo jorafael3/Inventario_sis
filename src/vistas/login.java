@@ -4,6 +4,8 @@
  */
 package vistas;
 
+import javax.swing.UIManager;
+
 /**
  *
  * @author User
@@ -181,7 +183,7 @@ public class login extends javax.swing.JFrame {
 
     private void txt_passKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passKeyPressed
         // TODO add your handling code here:
-         if (evt.getKeyCode() == evt.VK_ENTER) {
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             Btn_Iniciar_Sesion.doClick();
         }
     }//GEN-LAST:event_txt_passKeyPressed
@@ -216,6 +218,10 @@ public class login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                try {
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+                } catch (Exception ignored) {
+                }
                 new login().setVisible(true);
             }
         });

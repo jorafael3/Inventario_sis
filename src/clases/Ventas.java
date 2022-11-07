@@ -68,6 +68,67 @@ public class Ventas {
         }
     }
 
+    public int Guardar_Detalle(String[] array) {
+        String prod = array[0];
+        String cant = array[1];
+        String sub = array[2];
+        String iva = array[3];
+        String total = array[4];
+        String facturaID = array[5];
+        String factura = array[6];
+
+        int estado = Integer.parseInt(array[5]);
+        int val = 0;
+        try {
+            PreparedStatement pst = (PreparedStatement) con.prepareStatement("insert into ventas_dt "
+                    + "(factura_id,factura,producto_id,cantidad,subtotal,iva,total) "
+                    + "values (?,?,?,?,?,?,?)");
+            pst.setString(1, facturaID);
+            pst.setString(2, factura);
+            pst.setString(3, prod);
+            pst.setString(4, cant);
+            pst.setString(5, sub);
+            pst.setString(6, iva);
+            pst.setString(7, total);
+            int a = pst.executeUpdate();
+            if (a > 0) {
+                // JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO");
+                val = 1;
+                Actualizar_Stock(prod, cant);
+                //limpiar(codigo, servicio, subtipo, costo);
+            } else {
+                //   JOptionPane.showMessageDialog(null, "ERROR AL AGREGAR");
+            }
+            pst.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return val;
+    }
+
+    public int Actualizar_Stock(String ID, String cant) {
+
+        int val = 0;
+        try {
+            PreparedStatement pst = (PreparedStatement) con.prepareStatement("UPDATE productos set stock = stock - ?"
+                    + " Where ID = ?");
+            pst.setString(1, cant);
+            pst.setString(2, ID);
+            int a = pst.executeUpdate();
+            if (a > 0) {
+                // JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO");
+                val = 1;
+                //limpiar(codigo, servicio, subtipo, costo);
+            } else {
+                //JOptionPane.showMessageDialog(null, "ERROR AL AGREGAR");
+            }
+            pst.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return val;
+    }
+
     public String Obtener_Iva() {
         return "12.00";
     }
@@ -94,18 +155,20 @@ public class Ventas {
         return datos;
     }
 
-    public int Guardar_Cabecera(String[] array) {
+    public String Guardar_Cabecera(String[] array) {
         String ID = array[0];
         String factura = array[1];
         String nota = array[2];
         String sub = array[3];
         String iva = array[4];
-        Float total = Float.valueOf(array[5]) ;
-        int val = 0;
+        Float total = Float.valueOf(array[5]);
+        Object datos[] = new Object[1];
+        String val = "";
         try {
             PreparedStatement pst = (PreparedStatement) con.prepareStatement("INSERT into ventas_cab"
-                    + " (factura,cliente,subtotal,iva,total,nota) "
+                    + " (cliente,factura,subtotal,iva,total,nota) "
                     + "values(?,?,?,?,?,?)");
+            // + " select max(ID) as FacturaID from ventas_cab vc ");
             pst.setString(1, ID);
             pst.setString(2, factura);
             pst.setString(3, sub);
@@ -114,11 +177,27 @@ public class Ventas {
             pst.setString(6, nota);
             int a = pst.executeUpdate();
             if (a > 0) {
-                JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO");
-                val = 1;
+                // JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO");
+                try {
+                    //PreparedStatement pst = (PreparedStatement) con.prepareStatement("{CALL Cargar_Productos (?)}");            PreparedStatement pst = (PreparedStatement) con.prepareStatement("{CALL Cargar_Productos (?)}");
+                    PreparedStatement pst2 = (PreparedStatement) con.prepareStatement("select max(ID) as FacturaID from ventas_cab ");
+                    ResultSet res = pst2.executeQuery();
+                    while (res.next()) {
+                        for (int i = 0; i < 1; i++) {
+                            datos[i] = res.getObject(i + 1);
+                        }
+                        System.out.println("FACURA ID");
+                    }
+                    val = datos[0].toString();
+                    //System.out.println(val);
+
+                    pst.close();
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
                 //limpiar(codigo, servicio, subtipo, costo);
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL AGREGAR");
+                //JOptionPane.showMessageDialog(null, "ERROR AL AGREGAR");
             }
 
             pst.close();
@@ -126,6 +205,13 @@ public class Ventas {
             System.out.println(ex);
         }
         return val;
+    }
+
+    public void Clear_Table(DefaultTableModel modelo, JTable tabla) {
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i -= 1;
+        }
     }
 
 }

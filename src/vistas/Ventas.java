@@ -52,6 +52,7 @@ public class Ventas extends javax.swing.JFrame {
         };
         Tabla_Productos_Agregar.setModel(modeloTablaProductos_Buscar);
         VEN_LB_NOMBRECLI.setText("");
+        VEN_BTN_NUEVO_REG.setEnabled(false);
     }
 
     /**
@@ -101,12 +102,12 @@ public class Ventas extends javax.swing.JFrame {
         VEN_LB_TOT = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         VEN_BTN_REGISTRAR = new javax.swing.JButton();
+        VEN_BTN_NUEVO_REG = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         VEN_TXT_NOTA = new javax.swing.JTextArea();
         jLabel18 = new javax.swing.JLabel();
 
         jDialog1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        jDialog1.setPreferredSize(new java.awt.Dimension(750, 450));
         jDialog1.setSize(new java.awt.Dimension(750, 450));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -253,6 +254,7 @@ public class Ventas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Registrar Ventas"));
@@ -262,6 +264,12 @@ public class Ventas extends javax.swing.JFrame {
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setText("Cedula / Ruc:");
+
+        VEN_TXT_CEDULA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                VEN_TXT_CEDULAKeyPressed(evt);
+            }
+        });
 
         VEN_BTN_CARGAR_CLIENTE.setBackground(new java.awt.Color(153, 153, 255));
         VEN_BTN_CARGAR_CLIENTE.setText("Buscar");
@@ -447,11 +455,21 @@ public class Ventas extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
-        VEN_BTN_REGISTRAR.setBackground(new java.awt.Color(82, 190, 128));
+        VEN_BTN_REGISTRAR.setBackground(new java.awt.Color(153, 255, 153));
+        VEN_BTN_REGISTRAR.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         VEN_BTN_REGISTRAR.setText("Registrar Venta");
         VEN_BTN_REGISTRAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VEN_BTN_REGISTRARActionPerformed(evt);
+            }
+        });
+
+        VEN_BTN_NUEVO_REG.setBackground(new java.awt.Color(153, 204, 255));
+        VEN_BTN_NUEVO_REG.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        VEN_BTN_NUEVO_REG.setText("Nuevo");
+        VEN_BTN_NUEVO_REG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VEN_BTN_NUEVO_REGActionPerformed(evt);
             }
         });
 
@@ -461,15 +479,19 @@ public class Ventas extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(VEN_BTN_REGISTRAR)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(VEN_BTN_REGISTRAR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(VEN_BTN_NUEVO_REG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(VEN_BTN_REGISTRAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(VEN_BTN_NUEVO_REG, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -648,7 +670,6 @@ public class Ventas extends javax.swing.JFrame {
                 modeloTablaVentas.removeRow(row);
                 getSum();
             }
-
         }
     }//GEN-LAST:event_VEN_BTN_REMOVER_LINEAActionPerformed
 
@@ -662,14 +683,20 @@ public class Ventas extends javax.swing.JFrame {
                 Cedula
             };
             Object[] a = ven.Cargar_Cliente(param);
-            VEN_LB_NOMBRECLI.setText(a[2].toString());
-            CLI_ID = a[0].toString();
+            if (a[0] == null) {
+                JOptionPane.showMessageDialog(null, "Cliente no existe, o la cedula esta incorrecta");
+                VEN_TXT_CEDULA.requestFocus();
+            } else {
+                VEN_LB_NOMBRECLI.setText(a[2].toString());
+                CLI_ID = a[0].toString();
+                VEN_TXT_NUM_FACTURA.requestFocus();
+            }
+
         }
     }//GEN-LAST:event_VEN_BTN_CARGAR_CLIENTEActionPerformed
 
     private void VEN_BTN_REGISTRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VEN_BTN_REGISTRARActionPerformed
-        // TODO add your handling code here:
-
+        // TODO add your handling code here
         if (CLI_ID.equals("")) {
             JOptionPane.showMessageDialog(null, "Debe Seleccionar un cliente");
         } else {
@@ -685,13 +712,57 @@ public class Ventas extends javax.swing.JFrame {
                     String[] param = {
                         CLI_ID, factura, nota, SUBTOTAL, IVA, TOTAL
                     };
-                    System.out.println("**************************");
-                    System.out.println(Arrays.toString(param));
-                    ven.Guardar_Cabecera(param);
+                    String FacturaID = ven.Guardar_Cabecera(param);
+                    int CANt = VEN_TABLA_VENTAS.getRowCount();
+                    for (int i = 0; i < CANt; i++) {
+                        String prod = VEN_TABLA_VENTAS.getValueAt(i, 0).toString();
+                        String cant = VEN_TABLA_VENTAS.getValueAt(i, 4).toString();
+                        String sub = VEN_TABLA_VENTAS.getValueAt(i, 5).toString();
+                        String iva = VEN_TABLA_VENTAS.getValueAt(i, 6).toString();
+                        String total = VEN_TABLA_VENTAS.getValueAt(i, 7).toString();
+                        String[] paramDet = {
+                            prod, cant, sub, iva, total, FacturaID, factura
+                        };
+                        ven.Guardar_Detalle(paramDet);
+                    }
+                    JOptionPane.showMessageDialog(null, "DATOS GUARDADOS");
+                    VEN_BTN_REGISTRAR.setEnabled(false);
+                    VEN_BTN_REMOVER_LINEA.setEnabled(false);
+                    VEN_btn_Agregar_Prod.setEnabled(false);
+                    VEN_TXT_CEDULA.setEnabled(false);
+                    VEN_TXT_NUM_FACTURA.setEnabled(false);
+                    VEN_BTN_CARGAR_CLIENTE.setEnabled(false);
+                    VEN_BTN_NUEVO_REG.setEnabled(true);
+
                 }
             }
         }
     }//GEN-LAST:event_VEN_BTN_REGISTRARActionPerformed
+
+    private void VEN_BTN_NUEVO_REGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VEN_BTN_NUEVO_REGActionPerformed
+        // TODO add your handling code here:
+        ven.Clear_Table(modeloTablaVentas, VEN_TABLA_VENTAS);
+        VEN_TXT_CEDULA.setText("");
+        VEN_LB_NOMBRECLI.setText("");
+        VEN_TXT_NUM_FACTURA.setText("");
+        VEN_TXT_NOTA.setText("");
+        VEN_BTN_REGISTRAR.setEnabled(true);
+        VEN_BTN_REMOVER_LINEA.setEnabled(true);
+        VEN_btn_Agregar_Prod.setEnabled(true);
+        VEN_BTN_CARGAR_CLIENTE.setEnabled(true);
+        VEN_BTN_NUEVO_REG.setEnabled(false);
+        CLI_ID = "";
+        getSum();
+
+    }//GEN-LAST:event_VEN_BTN_NUEVO_REGActionPerformed
+
+    private void VEN_TXT_CEDULAKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_VEN_TXT_CEDULAKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            VEN_BTN_CARGAR_CLIENTE.doClick();
+        }
+
+    }//GEN-LAST:event_VEN_TXT_CEDULAKeyPressed
 
     /**
      * @param args the command line arguments
@@ -769,6 +840,7 @@ public class Ventas extends javax.swing.JFrame {
     private javax.swing.JTextField VEN_AG_STOCK;
     private javax.swing.JButton VEN_BTN_AGREGAR_P;
     private javax.swing.JButton VEN_BTN_CARGAR_CLIENTE;
+    private javax.swing.JButton VEN_BTN_NUEVO_REG;
     private javax.swing.JButton VEN_BTN_REGISTRAR;
     private javax.swing.JButton VEN_BTN_REMOVER_LINEA;
     private javax.swing.JButton VEN_BTN_nuevo_Cliente;

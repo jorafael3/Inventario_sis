@@ -214,4 +214,31 @@ public class Ventas {
         }
     }
 
+    //********************************************************************
+    public void Cargar_Historial_Venta(DefaultTableModel modelo, JTable tabla, String[] array) {
+        try {
+            Clear_Table(modelo, tabla);
+            String fini = array[0];
+            String ffin = array[1];
+
+            String sql = "SELECT * from ventas_cab where fecha_creado between '"+fini+"' and '"+ffin+"' ";
+            PreparedStatement pst = con.prepareStatement(sql);
+           //pst.setString(1, fini);
+            //pst.setString(2, ffin);
+
+            ResultSet res = pst.executeQuery();
+            Object datos[] = new Object[8];
+            while (res.next()) {
+                for (int i = 0; i < 8; i++) {
+                    datos[i] = res.getObject(i + 1);
+                }
+                System.out.println(Arrays.toString(datos));
+                modelo.addRow(datos);
+            }
+            res.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
 }

@@ -41,6 +41,7 @@ public class Principal extends javax.swing.JFrame {
         Btn_Ventas = new javax.swing.JButton();
         Btn_CLIENTES = new javax.swing.JButton();
         Btn_Nuevo_Usuario4 = new javax.swing.JButton();
+        Btn_Ventas_historial = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -154,15 +155,31 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        Btn_Ventas_historial.setBackground(new java.awt.Color(33, 47, 61));
+        Btn_Ventas_historial.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Btn_Ventas_historial.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_Ventas_historial.setText("Historial Ventas");
+        Btn_Ventas_historial.setBorder(null);
+        Btn_Ventas_historial.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        Btn_Ventas_historial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_Ventas_historialActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Btn_PRODUCTOS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Btn_INVENTARIO, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-            .addComponent(Btn_CLIENTES, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-            .addComponent(Btn_Ventas, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-            .addComponent(Btn_Nuevo_Usuario4, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+            .addComponent(Btn_INVENTARIO, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+            .addComponent(Btn_CLIENTES, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+            .addComponent(Btn_Ventas, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+            .addComponent(Btn_Nuevo_Usuario4, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Btn_Ventas_historial, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,9 +192,11 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(Btn_CLIENTES, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Btn_Ventas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(Btn_Ventas_historial, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Btn_Nuevo_Usuario4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                .addGap(22, 22, 22))
         );
 
         jButton1.setBackground(new java.awt.Color(33, 47, 61));
@@ -395,7 +414,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(288, Short.MAX_VALUE))
+                .addContainerGap(276, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -488,6 +507,14 @@ public class Principal extends javax.swing.JFrame {
         PR_LB_CANT_CLIENTES.setText(clientes[0].toString());
     }//GEN-LAST:event_formWindowOpened
 
+    private void Btn_Ventas_historialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Ventas_historialActionPerformed
+        // TODO add your handling code here:
+         Ventas_Historial lo = new Ventas_Historial();
+        lo.setLocationRelativeTo(null);
+        lo.setTitle("Historial de Ventas");
+        lo.setVisible(true);
+    }//GEN-LAST:event_Btn_Ventas_historialActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -529,6 +556,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton Btn_Nuevo_Usuario4;
     private javax.swing.JButton Btn_PRODUCTOS;
     private javax.swing.JButton Btn_Ventas;
+    private javax.swing.JButton Btn_Ventas_historial;
     private javax.swing.JLabel PR_LB_CANT_CLIENTES;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

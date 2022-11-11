@@ -38,11 +38,14 @@ public class Principal extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         Btn_PRODUCTOS = new javax.swing.JButton();
         Btn_INVENTARIO = new javax.swing.JButton();
-        Btn_Ventas = new javax.swing.JButton();
         Btn_CLIENTES = new javax.swing.JButton();
-        Btn_Nuevo_Usuario4 = new javax.swing.JButton();
         Btn_Ventas_historial = new javax.swing.JButton();
+        Btn_Ventas1 = new javax.swing.JButton();
+        Btn_Compras = new javax.swing.JButton();
+        Btn_Compras_historial = new javax.swing.JButton();
+        Btn_Proveedores = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        Btn_Nuevo_Usuario4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -113,20 +116,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        Btn_Ventas.setBackground(new java.awt.Color(33, 47, 61));
-        Btn_Ventas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        Btn_Ventas.setForeground(new java.awt.Color(255, 255, 255));
-        Btn_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/acquisition.png"))); // NOI18N
-        Btn_Ventas.setText("Ventas");
-        Btn_Ventas.setBorder(null);
-        Btn_Ventas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Btn_Ventas.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        Btn_Ventas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_VentasActionPerformed(evt);
-            }
-        });
-
         Btn_CLIENTES.setBackground(new java.awt.Color(33, 47, 61));
         Btn_CLIENTES.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Btn_CLIENTES.setForeground(new java.awt.Color(255, 255, 255));
@@ -138,20 +127,6 @@ public class Principal extends javax.swing.JFrame {
         Btn_CLIENTES.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_CLIENTESActionPerformed(evt);
-            }
-        });
-
-        Btn_Nuevo_Usuario4.setBackground(new java.awt.Color(33, 47, 61));
-        Btn_Nuevo_Usuario4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        Btn_Nuevo_Usuario4.setForeground(new java.awt.Color(255, 255, 255));
-        Btn_Nuevo_Usuario4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/man.png"))); // NOI18N
-        Btn_Nuevo_Usuario4.setText("Usuarios");
-        Btn_Nuevo_Usuario4.setBorder(null);
-        Btn_Nuevo_Usuario4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Btn_Nuevo_Usuario4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        Btn_Nuevo_Usuario4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Nuevo_Usuario4ActionPerformed(evt);
             }
         });
 
@@ -167,19 +142,72 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        Btn_Ventas1.setBackground(new java.awt.Color(33, 47, 61));
+        Btn_Ventas1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Btn_Ventas1.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_Ventas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/acquisition.png"))); // NOI18N
+        Btn_Ventas1.setText("Ventas");
+        Btn_Ventas1.setBorder(null);
+        Btn_Ventas1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Btn_Ventas1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Btn_Ventas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_Ventas1ActionPerformed(evt);
+            }
+        });
+
+        Btn_Compras.setBackground(new java.awt.Color(33, 47, 61));
+        Btn_Compras.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Btn_Compras.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_Compras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/acquisition.png"))); // NOI18N
+        Btn_Compras.setText("Compras");
+        Btn_Compras.setBorder(null);
+        Btn_Compras.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Btn_Compras.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Btn_Compras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_ComprasActionPerformed(evt);
+            }
+        });
+
+        Btn_Compras_historial.setBackground(new java.awt.Color(33, 47, 61));
+        Btn_Compras_historial.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Btn_Compras_historial.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_Compras_historial.setText("Historial Compras");
+        Btn_Compras_historial.setBorder(null);
+        Btn_Compras_historial.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        Btn_Compras_historial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_Compras_historialActionPerformed(evt);
+            }
+        });
+
+        Btn_Proveedores.setBackground(new java.awt.Color(33, 47, 61));
+        Btn_Proveedores.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Btn_Proveedores.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_Proveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/rating.png"))); // NOI18N
+        Btn_Proveedores.setText("Proveedores");
+        Btn_Proveedores.setBorder(null);
+        Btn_Proveedores.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Btn_Proveedores.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Btn_Proveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_ProveedoresActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Btn_PRODUCTOS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Btn_INVENTARIO, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-            .addComponent(Btn_CLIENTES, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-            .addComponent(Btn_Ventas, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-            .addComponent(Btn_Nuevo_Usuario4, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Btn_Ventas_historial, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(Btn_INVENTARIO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Btn_CLIENTES, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Btn_Ventas1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Btn_Ventas_historial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Btn_Compras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Btn_Compras_historial, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+            .addComponent(Btn_Proveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,12 +219,16 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Btn_CLIENTES, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Btn_Ventas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addComponent(Btn_Proveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Btn_Ventas1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Btn_Ventas_historial, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Btn_Nuevo_Usuario4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addComponent(Btn_Compras, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Btn_Compras_historial, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
         );
 
         jButton1.setBackground(new java.awt.Color(33, 47, 61));
@@ -207,15 +239,27 @@ public class Principal extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
+        Btn_Nuevo_Usuario4.setBackground(new java.awt.Color(33, 47, 61));
+        Btn_Nuevo_Usuario4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Btn_Nuevo_Usuario4.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_Nuevo_Usuario4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/man.png"))); // NOI18N
+        Btn_Nuevo_Usuario4.setText("Usuarios");
+        Btn_Nuevo_Usuario4.setBorder(null);
+        Btn_Nuevo_Usuario4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Btn_Nuevo_Usuario4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Btn_Nuevo_Usuario4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_Nuevo_Usuario4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jSeparator2)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(Btn_Nuevo_Usuario4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,6 +267,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(lb_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbtipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,7 +284,9 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Btn_Nuevo_Usuario4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -414,7 +463,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -469,16 +518,16 @@ public class Principal extends javax.swing.JFrame {
         lo.setVisible(true);
     }//GEN-LAST:event_Btn_INVENTARIOActionPerformed
 
-    private void Btn_VentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_VentasActionPerformed
+    private void Btn_ComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ComprasActionPerformed
         // TODO add your handling code here:
-        Ventas lo = new Ventas();
+        Compras lo = new Compras();
         lo.setLocationRelativeTo(null);
-        lo.setTitle("Usuarios");
+        lo.setTitle("Compras");
         lo.setVisible(true);
         //clases.Usuarios arser = new clases.Usuarios();
         //arser.cargar_servicios(cbmostrarservicios);
         //txfiltroservicios.requestFocus();
-    }//GEN-LAST:event_Btn_VentasActionPerformed
+    }//GEN-LAST:event_Btn_ComprasActionPerformed
 
     private void Btn_CLIENTESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CLIENTESActionPerformed
         // TODO add your handling code here:
@@ -503,17 +552,34 @@ public class Principal extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
 
-        Object[] clientes  = pr.Clientes();
+        Object[] clientes = pr.Clientes();
         PR_LB_CANT_CLIENTES.setText(clientes[0].toString());
     }//GEN-LAST:event_formWindowOpened
 
     private void Btn_Ventas_historialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Ventas_historialActionPerformed
         // TODO add your handling code here:
-         Ventas_Historial lo = new Ventas_Historial();
+        Ventas_Historial lo = new Ventas_Historial();
         lo.setLocationRelativeTo(null);
         lo.setTitle("Historial de Ventas");
         lo.setVisible(true);
     }//GEN-LAST:event_Btn_Ventas_historialActionPerformed
+
+    private void Btn_Ventas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Ventas1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Btn_Ventas1ActionPerformed
+
+    private void Btn_Compras_historialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Compras_historialActionPerformed
+        // TODO add your handling code here:
+
+        Compras_Historial lo = new Compras_Historial();
+        lo.setLocationRelativeTo(null);
+        lo.setTitle("Historial de Compras");
+        lo.setVisible(true);
+    }//GEN-LAST:event_Btn_Compras_historialActionPerformed
+
+    private void Btn_ProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ProveedoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Btn_ProveedoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -552,10 +618,13 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_CLIENTES;
+    private javax.swing.JButton Btn_Compras;
+    private javax.swing.JButton Btn_Compras_historial;
     private javax.swing.JButton Btn_INVENTARIO;
     private javax.swing.JButton Btn_Nuevo_Usuario4;
     private javax.swing.JButton Btn_PRODUCTOS;
-    private javax.swing.JButton Btn_Ventas;
+    private javax.swing.JButton Btn_Proveedores;
+    private javax.swing.JButton Btn_Ventas1;
     private javax.swing.JButton Btn_Ventas_historial;
     private javax.swing.JLabel PR_LB_CANT_CLIENTES;
     private javax.swing.JButton jButton1;

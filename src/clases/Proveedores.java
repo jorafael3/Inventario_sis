@@ -65,7 +65,7 @@ public class Proveedores {
         String ID = array[6];
         int val = 0;
         try {
-            PreparedStatement pst = (PreparedStatement) con.prepareStatement("UPDATE Clientes set"
+            PreparedStatement pst = (PreparedStatement) con.prepareStatement("UPDATE Proveedores set"
                     + " cedula=?,nombre=?,direccion=?,email=?,telefono=?,estado=? where ID = ?");
             pst.setString(1, cedula);
             pst.setString(2, nombre);
@@ -94,7 +94,7 @@ public class Proveedores {
     public void Cargar_Clientes(DefaultTableModel modelo, JTable tabla) {
         try {
             Clear_Table(modelo, tabla);
-            String sql = "select ID,cedula,nombre,email,estado from clientes";
+            String sql = "select ID,cedula,nombre,email,estado from Proveedores";
             PreparedStatement us = con.prepareStatement(sql);
             ResultSet res = us.executeQuery();
             Object datos[] = new Object[5];
@@ -115,7 +115,7 @@ public class Proveedores {
         try {
             Clear_Table(modelo, tabla);
             String codigo = array[0];
-            String sql = "select * from Clientes where cedula like '%" + codigo + "%' or nombre like '%" + codigo + "%'";
+            String sql = "select * from Proveedores where cedula like '%" + codigo + "%' or nombre like '%" + codigo + "%'";
             PreparedStatement us = con.prepareStatement(sql);
             //us.setString(1, codigo);
             //us.setString(2, codigo);
@@ -142,7 +142,7 @@ public class Proveedores {
         Object datos[] = new Object[7];
         try {
             //PreparedStatement pst = (PreparedStatement) con.prepareStatement("{CALL Cargar_Productos (?)}");            PreparedStatement pst = (PreparedStatement) con.prepareStatement("{CALL Cargar_Productos (?)}");
-            PreparedStatement pst = (PreparedStatement) con.prepareStatement("select * from Clientes"
+            PreparedStatement pst = (PreparedStatement) con.prepareStatement("select * from Proveedores"
                     + " WHERE ID = ?;");
             pst.setString(1, ID);
             ResultSet res = pst.executeQuery();

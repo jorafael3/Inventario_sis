@@ -19,7 +19,7 @@ public class Proveedores extends javax.swing.JFrame {
     /**
      * Creates new form Clientes
      */
-    clases.Clientes cl = new clases.Clientes();
+    clases.Proveedores cl = new clases.Proveedores();
     DefaultTableModel modeloTablaClientes;
 
     public Proveedores() {

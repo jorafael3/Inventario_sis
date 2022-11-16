@@ -176,10 +176,7 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(Btn_CLIENTES, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
             .addComponent(Btn_Ventas, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
             .addComponent(Btn_Nuevo_Usuario4, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Btn_Ventas_historial, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(Btn_Ventas_historial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

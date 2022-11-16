@@ -5,6 +5,7 @@
 package vistas;
 
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -438,6 +439,7 @@ public class Productos extends javax.swing.JFrame {
         PROD_TXT_COSTO.setText(a[4].toString());
         PROD_TXT_PRECIO.setText(a[5].toString());
         PROD_TXT_STOCK.setText(a[6].toString());
+        PROD_TXT_STOCK.setEnabled(false);
         PROD_CHECK_ESTADO.setSelected((Boolean) a[7]);
 
     }//GEN-LAST:event_Tabla_ProductosMouseClicked
@@ -583,6 +585,10 @@ public class Productos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                 try {
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+                } catch (Exception ignored) {
+                }
                 new Productos().setVisible(true);
 
             }

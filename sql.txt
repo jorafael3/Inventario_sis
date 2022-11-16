@@ -1,57 +1,71 @@
-create table Usuarios(
-ID int(9) unsigned zerofill NOT NULL auto_increment primary key,
-usuario varchar(20) not null,
-pass varchar(20),
-email varchar(50),
-tipo_usuario int,
-fecha_creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-creado_por varchar(10)
-)
 
-create table Productos(
-ID int(9) unsigned zerofill NOT NULL auto_increment primary key,
-codigo varchar(50),
-nombre varchar(50),
-descripcion text,
-costo float,
-precio float,
-stock int,
-estado bit,
-fecha_creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-fecha_actualizado TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-)
+CREATE TABLE `clientes` (
+  `ID` int(9) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `cedula` varchar(13) DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
+  `direccion` text DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `estado` bit(1) DEFAULT NULL,
+  `fecha_creado` timestamp NOT NULL DEFAULT current_timestamp(),
+  `fecha_actualizado` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
-create table Clientes(
-ID int(9) unsigned zerofill NOT NULL auto_increment primary key,
-cedula varchar(13),
-nombre varchar(100),
-direccion text,
-email varchar(50),
-telefono varchar(20),
-estado bit,
-fecha_creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-fecha_actualizado TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-)
+-- inventario_db.productos definition
 
+CREATE TABLE `productos` (
+  `ID` int(9) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `codigo` varchar(50) DEFAULT NULL,
+  `nombre` varchar(50) DEFAULT NULL,
+  `descripcion` text DEFAULT NULL,
+  `costo` float DEFAULT NULL,
+  `precio` float DEFAULT NULL,
+  `stock` int(11) DEFAULT NULL,
+  `iva` int(11) DEFAULT NULL,
+  `estado` bit(1) DEFAULT NULL,
+  `fecha_creado` timestamp NOT NULL DEFAULT current_timestamp(),
+  `fecha_actualizado` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
-create table ventas_cab(
-ID int(9) unsigned zerofill NOT NULL auto_increment primary key,
-factura varchar(100),
-cliente varchar(10),
-subtotal float,
-iva float,
-total float,
-nota text,
-fecha_creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+-- inventario_db.usuarios definition
 
-create table ventas_dt(
-ID int(9) unsigned zerofill NOT NULL auto_increment primary key,
-factura_id varchar(10),
-factura varchar(100),
-producto_id varchar(10),
-cantidad int,
-subtotal float,
-total float
-)
+CREATE TABLE `usuarios` (
+  `ID` int(9) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `usuario` varchar(20) NOT NULL,
+  `pass` varchar(20) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `tipo_usuario` int(11) DEFAULT NULL,
+  `fecha_creado` timestamp NOT NULL DEFAULT current_timestamp(),
+  `creado_por` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
+-- inventario_db.ventas_cab definition
+
+CREATE TABLE `ventas_cab` (
+  `ID` int(9) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `factura` varchar(100) DEFAULT NULL,
+  `cliente` varchar(10) DEFAULT NULL,
+  `subtotal` float DEFAULT NULL,
+  `iva` float DEFAULT NULL,
+  `total` float DEFAULT NULL,
+  `nota` text DEFAULT NULL,
+  `fecha_creado` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+
+-- inventario_db.ventas_dt definition
+
+CREATE TABLE `ventas_dt` (
+  `ID` int(9) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `factura_id` varchar(10) DEFAULT NULL,
+  `factura` varchar(100) DEFAULT NULL,
+  `producto_id` varchar(10) DEFAULT NULL,
+  `cantidad` int(11) DEFAULT NULL,
+  `subtotal` float DEFAULT NULL,
+  `iva` float DEFAULT NULL,
+  `total` float DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
